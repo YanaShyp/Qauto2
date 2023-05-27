@@ -12,3 +12,6 @@ class TextBox(BaseControl):
 
     def is_enabled(self):
         self.element.is_enabled()
+
+    def click(self):
+        self.element.click()
