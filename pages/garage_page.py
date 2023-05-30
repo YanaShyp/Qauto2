@@ -13,6 +13,7 @@ class GaragePage(BasePageWithDriver):
         self._mileage_field = None
         self._save_button = None
         self._remove_car_button = None
+        self._remove_danger_car_button = None
 
     def get_my_profile_button(self):
         self._my_profile_button = Button(self._driver.find_element(By.ID, "userNavDropdown"))
@@ -37,6 +38,11 @@ class GaragePage(BasePageWithDriver):
     def get_remove_car_button(self):
         self._remove_car_button = Button(self._driver.find_element(By.XPATH, "//*[text()='Remove car']"))
         return self._remove_car_button
+
+    def get_remove_danger_car_button(self):
+        self._remove_danger_car_button = Button(self._driver.find_element(By.XPATH, "//*[@class ='btn btn-danger']"))
+        return self._remove_danger_car_button
+
 
 
 

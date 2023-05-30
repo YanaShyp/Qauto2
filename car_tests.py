@@ -17,9 +17,11 @@ class TestCars:
         self.session.post("https://qauto2.forstudy.space/api/auth/signup", json=register_user.__dict__)
         login_user = UserLogin("yanatestCars@gmail.com", "Qwerty123", "False")
         self.session.post("https://qauto2.forstudy.space/api/auth/signin", json=login_user.__dict__)
-        create_new_car = CreateNewCar("BMW", "X5", "110")
+        create_new_car = CreateNewCar("1", "1", 100)
         self.session.post("https://qauto2.forstudy.space/api/cars", json=create_new_car.__dict__)
 
+    def setup_method(self):
+        self.driver.implicitly_wait(5)
 
     def test_user_login(self):
         self.driver.get("https://guest:welcome2qauto@qauto2.forstudy.space/")
@@ -31,12 +33,13 @@ class TestCars:
     def test_edit_car(self):
          self.garage_page.get_edit_button().click()
          self.garage_page.get_mileage_field().click()
-         self.garage_page.get_mileage_field().send_keys(10)
+         self.garage_page.get_mileage_field().fill_field("10")
          self.garage_page.get_save_button().click()
 
     def test_delete_car(self):
         self.garage_page.get_edit_button().click()
         self.garage_page.get_remove_car_button().click()
+        self.garage_page.get_remove_danger_car_button().click()
 
 
     def teardown_class(self):
